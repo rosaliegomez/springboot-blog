@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:fragment="main-header(title)">
+    <meta charset="UTF-8"/>
+    <title thtext="${title}"></title>
+</head>
+<body>
+
+<nav th:replace="fragments/navbar :: mainNavbar"></nav>
+<div>
+
+
+</div>
+<div>
+    <ul>
+        <li><a href="/roll-dice/1">1</a></li>
+        <li><a href="/roll-dice/2">2</a></li>
+        <li><a href="/roll-dice/3">3</a></li>
+        <li><a href="/roll-dice/4">4</a></li>
+        <li><a href="/roll-dice/5">5</a></li>
+        <li><a href="/roll-dice/6">6</a></li>
+
+    </ul>
+</div>
+
+</body>
+</html>
