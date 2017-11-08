@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 </head>
 <body>
-<form th:action="@{/posts/{id}/edit(id=${post.id})}" method ="get" th:object = "${post}">
+<nav th:include="fragments/navbar :: mainNavbar"></nav>
+<h1>Edit your post</h1>
+<form th:action="@{/posts/{id}/edit(id=${post.id})}" method ="post" th:object = "${post}">
     Title:
     <input th:field="*{title}"/>
     <br/>
