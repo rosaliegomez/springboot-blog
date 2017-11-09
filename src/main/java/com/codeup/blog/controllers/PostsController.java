@@ -1,7 +1,9 @@
 package com.codeup.blog.controllers;
 
 import com.codeup.blog.models.Post;
-import com.codeup.blog.repositories.PostRepository;
+import com.codeup.blog.models.User;
+import com.codeup.blog.repositories.PostsRepository;
+import com.codeup.blog.repositories.UserRepository;
 import com.codeup.blog.services.PostSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,11 +15,13 @@ import java.util.List;
 @Controller
 public class PostsController {
 
-    private final PostRepository postDao;
+    private final PostSvc service;
+    private final UserRepository userDao;
 
     @Autowired
-    public PostsController(PostRepository postDao) {
-        this.postDao = postDao;
+    public PostsController(PostSvc service, UserRepository userDao) {
+        this.service = service;
+        this.userDao = userDao;
     }
 
 
@@ -26,8 +30,8 @@ public class PostsController {
 
     public String showPosts (Model viewModel){
         String output = "";
-       List<Post> posts = (List<Post>) postDao.findAll();
-        viewModel.addAttribute("posts",posts);
+       List<Post> posts = (List<Post>) service.findAll();
+        viewModel.addAttribute("posts",service.findAll());
 //        postSvc.save(new Post("New title", "Newish description"));
 //
 //        for (Post post: posts){
@@ -43,9 +47,9 @@ public class PostsController {
 //    });
 //
     @GetMapping("/posts/{id}")
-    public String showPosts (@PathVariable Long id, Model viewModel){
-        Post post = postDao.findOne(id);
-        viewModel.addAttribute("post", post);
+    public String showPosts (@PathVariable long id, Model viewModel){
+        Post post = service.findById(id);
+        viewModel.addAttribute("post", service.findById(id));
 
         return "posts/show";
     }
@@ -58,33 +62,36 @@ public class PostsController {
 
     @PostMapping("/posts/create")
     public String createPosts (@ModelAttribute Post post){
-        postDao.save(post);
+        User user = userDao.findOne(2L);
+        post.setUser(user);
+        service.save(post);
     return "redirect:/posts";
     }
 
     @GetMapping("/posts/{id}/edit")
     public String showPostToBeEdited (@PathVariable Long id,  Model viewModel){
-        Post post = postDao.findOne(id);
-        viewModel.addAttribute("post", post);
+        Post existingPost = service.findById(id);
+        viewModel.addAttribute("post", existingPost);
         return "posts/edit";
     }
 
     @PostMapping("/posts/{id}/edit")
     public String editPost(@ModelAttribute Post post, @PathVariable Long id){
-        postDao.save(post);
-        return "redirect:/posts";
+        post.setId(id);
+        service.save(post);
+        return "redirect:/posts" + post.getId();
     }
 
     @GetMapping("posts/{id}/delete")
     public String showPostToBeDeleted (@PathVariable Long id, Model viewModel){
-        Post post = postDao.findById(id);
+        Post post = service.findById(id);
         viewModel.addAttribute("post", post);
 
         return "posts/delete";
     }
     @PostMapping("/posts/{id}/delete")
     public String deletePosts(@ModelAttribute Post post, @PathVariable Long id){
-        postDao.delete(id);
+        service.delete(id);
         return "redirect:/posts";
     }
 }
