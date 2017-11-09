@@ -1,42 +1,42 @@
 package com.codeup.blog.services;
 
 import com.codeup.blog.models.Post;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.codeup.blog.repositories.PostsRepository;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service("PostSvc")
 public class PostSvc {
 
-    private List<Post> posts;
+    private final PostsRepository postDao;
 
-    public PostSvc(){
-        posts = new ArrayList<>();
-        createDummyPosts();
+//    public PostSvc(){
+//        posts = new ArrayList<>();
+//        createDummyPosts();
+//    }
+
+    @Autowired
+    public PostSvc(PostsRepository postDao){
+        this.postDao = postDao;
     }
 
-    private void createDummyPosts(){
-        posts.add(new Post("First Title", "This is the description"));
-        posts.add(new Post("Title-ish Title", "Lots of text"));
-    }
 
     //Get all the ads
-    public List<Post> findAll(){
-        return posts;
+    public Iterable<Post> findAll(){
+        return postDao.findAll();
     }
 
-    public Post findOne(Long id){
-        return posts.get((int)(id-1));
+    public Post findById(Long id)
+    {
+        return postDao.findOne(id);
     }
 
     public Post save (Post post){
-        post.setId((long) (posts.size()+1));
-        posts.add(post);
-        return post;
+        return postDao.save(post);
     }
-    private void createPosts() {
-        this.save(new Post("Example 1", "Long description"));
-        this.save(new Post("Example 2", "Another long description"));
+    public void delete(long id){
+        postDao.delete(id);
     }
 }

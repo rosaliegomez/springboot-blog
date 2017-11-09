@@ -12,6 +12,7 @@
 
     </h1>
     <p th:text="${post.description}"></p>
+    Created by: <a th:href="@{'mailto:' + ${post.user.email} }"><span th:text="${post.user.username}"></span></a>
 </div>
 
 </body>
