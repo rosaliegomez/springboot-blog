@@ -4,12 +4,10 @@ import com.codeup.blog.models.Post;
 import com.codeup.blog.models.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepository extends CrudRepository <User, Long>{
-//    User findByTitle(String title);
-//
-//    @Query("from User u where u.id=?2")
-//    public User findById(long id);
-
+@Repository
+public interface UsersRepository extends CrudRepository <User, Long>{
+    User findByUsername(String username);
 
 }
