@@ -5,11 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{/posts/{id}/edit(id=${post.id})}" method ="get" th:object = "${post}">
-    Title:
-    <input th:field="*{title}"/>
+<form th:action="@{/user/{id}/edit(id=${user.id})}" method ="get" th:object = "${user}">
+    Username:
+    <input th:field="*{username}"/>
     <br/>
-    Description:
+    Password:
     <input th:field="*{description}" />
     <br/>
     <input type="submit" />

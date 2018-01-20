@@ -1,6 +1,9 @@
 package com.codeup.blog.models;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="posts")
@@ -10,9 +13,12 @@ public class Post {
     private Long id;
 
     @Column(nullable = false, length = 100)
+    @NotBlank(message = "Posts must have a title")
+    @Size(min=3, message = "A post title must have at least 3 characters.")
     private String title;
 
     @Column(columnDefinition = "TEXT", nullable = false)
+    @NotBlank(message = "Posts must have a description.")
     private String description;
 
     @ManyToOne
