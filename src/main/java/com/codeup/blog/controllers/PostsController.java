@@ -2,24 +2,26 @@ package com.codeup.blog.controllers;
 
 import com.codeup.blog.models.Post;
 import com.codeup.blog.models.User;
-import com.codeup.blog.repositories.PostsRepository;
-import com.codeup.blog.repositories.UserRepository;
+import com.codeup.blog.repositories.UsersRepository;
 import com.codeup.blog.services.PostSvc;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 public class PostsController {
 
     private final PostSvc service;
-    private final UserRepository userDao;
+    private final UsersRepository userDao;
 
     @Autowired
-    public PostsController(PostSvc service, UserRepository userDao) {
+    public PostsController(PostSvc service, UsersRepository userDao) {
         this.service = service;
         this.userDao = userDao;
     }
@@ -61,8 +63,24 @@ public class PostsController {
     }
 
     @PostMapping("/posts/create")
-    public String createPosts (@ModelAttribute Post post){
-        User user = userDao.findOne(2L);
+    public String createPosts (@Valid Post post, Errors validation, Model viewModel){
+
+        if(post.getTitle().endsWith("?")){
+            validation.rejectValue(
+                    "title",
+                    "post.title",
+                    "Invalid character!"
+            );
+        }
+
+        if(validation.hasErrors()){
+            viewModel.addAttribute("errors",validation);
+            viewModel.addAttribute("posts",post);
+            return "posts/create";
+        }
+
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         service.save(post);
     return "redirect:/posts";
@@ -94,4 +112,6 @@ public class PostsController {
         service.delete(id);
         return "redirect:/posts";
     }
+
+
 }

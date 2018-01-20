@@ -1,4 +1,37 @@
-.navbar{
-    background-color: maroon;
-    display: flex;
+#nav-list{
+
+    color: yellow;
+}
+body{
+    background-color: #F6F6F6 !important;
+    font-family: "Playfair Display", serif !important;
+}
+#nav-list a{
+    color: #fff;
+}
+#nav-list>a{
+    color: yellow;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #13756C !important;
+    border-color: transparent !important;
+    font-family: "Lato", sans-serif !important;
+}
+.navbar.navbar-default{
+    background-color: orange;
+}
+nav{
+    background-color: #2B2928 !important;
+}
+#my-nav{
+    background-color: #2B2928 !important;
+    color: lightsalmon;
+    font-family: "Cambria Math";
+}
+#logged-in-nav{
+    background-color: lightsalmon !important;
+}
+.navbar-default{
+    background-color: goldenrod;
 }
