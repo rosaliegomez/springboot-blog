@@ -4,37 +4,44 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
     <link rel="stylesheet" href="/static/CSS/style.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Elsie:900|Raleway|Rozha+One|Titillium+Web:900|Lato');
+    </style>
     <title>Title</title>
 </head>
 <body>
-<div sec:authorize="isAuthenticated()" id="logged-in-nav" class="nav navbar-nav" th:fragment="loggedinNav">
-    <ul id="nav-list" class="nav navbar-nav">
+<div sec:authorize="isAuthenticated()" id="logged-in-nav" class="navbar navbar-default" th:fragment="loggedinNav">
+    <div class="logo">
+    <ul class="navbar-links" >
 
         <li class="list"><a href="/">Index</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/register">Register</a></li>
-        <li>
+        <li class="list">
+            <a id="register-button" href="/register">Register</a>
+
+        </li>
+        <li class="list">
             <form th:action="@{/logout}" th:method="post">
-                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+                <button id="logout-button" class="btn-link btn">Logout</button>
             </form>
         </li>
     </ul>
-
+    </div>
 </div>
 <nav sec:authorize="isAnonymous()" id="my-nav" class="navbar navbar-default" th:fragment="mainNavbar">
-         <ul id="list" class="nav navbar-nav">
+    <div class="logo">
+    <ul class="navbar-links">
 
                     <li class="list"><a href="/">Index</a></li>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Register</a></li>
+                    <li class="list" id="login"><a href="/login">Login</a></li>
+                    <li class="list"><a href="/register">Register</a></li>
                     <li>
                         <!--<form th:action="@{/logout}" th:method="post">-->
                             <!--<button class="btn-link btn" style="margin-top: 8px">Logout</button>-->
                         <!--</form>-->
                     </li>
                 </ul>
-
-    </nav>
+    </div>
+</nav>
 
 </body>
 </html>
