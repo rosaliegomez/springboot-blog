@@ -1,7 +1,4 @@
-#nav-list{
 
-    color: yellow;
-}
 body{
     background-color: #F6F6F6 !important;
     font-family: "Playfair Display", serif !important;
@@ -9,28 +6,94 @@ body{
 #nav-list a{
     color: #fff;
 }
-#nav-list>a{
-    color: yellow;
-}
+
 .btn-primary {
     color: #fff;
-    background-color: #13756C !important;
+    background-color: #1E998D !important;
     border-color: transparent !important;
     font-family: "Lato", sans-serif !important;
 }
-.navbar.navbar-default{
-    background-color: orange;
-}
+
 nav{
     background-color: #2B2928 !important;
 }
 #my-nav{
     background-color: #2B2928 !important;
     color: lightsalmon;
-    font-family: "Cambria Math";
+    font-family: 'Raleway', sans-serif;
+    height: 150px;
+    width: 100%;
 }
 #logged-in-nav{
-    background-color: lightsalmon !important;
+    background-color: #2B2928 !important;
+    height: 150px;
+    width: 100%;
+    position: fixed;
+    font-family: 'Raleway', sans-serif;
+}
+.navbar-links{
+    display: inline-block;
+    float: right;
+    padding: 0;
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+}
+/*.list{*/
+    /*float:right;*/
+/*}*/
+li {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+a{
+    color: white !important;
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.logo {
+    position: relative;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    padding-left: 4em;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+
+}
+#login{
+    color: #1E998D;
+    border: solid 2px;
+    border-radius: 3px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #1E998D;
+    font-family: 'Raleway', sans-serif;
+}
+#logout-button{
+    display: inline-block;
+    float: right;
+    border : solid 2px;
+    border-radius: 4px;
+    padding-right: 25px;
+    padding-left: 25px;
+    margin-right: 10px;
+    color: #1E998D;
+}
+#register-button{
+    display: inline-block;
+    float: right;
+    border : solid 2px;
+    border-radius: 4px;
+    padding-right: 25px;
+    padding-left: 25px;
+    margin-right: 10px;
+    color: #1E998D;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 .navbar-default{
     background-color: goldenrod;
