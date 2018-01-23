@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:height="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
@@ -12,9 +13,11 @@
 <body>
 <div sec:authorize="isAuthenticated()" id="logged-in-nav" class="navbar navbar-default" th:fragment="loggedinNav">
     <div class="logo">
+        <img th:src="@{/img/peony.png}" alt="flower" height="40" width="40" class="peony"/>
+        <h3 class="peony blog-title">Blog</h3>
     <ul class="navbar-links" >
 
-        <li class="list"><a href="/">Index</a></li>
+        <li class="list"><a href="/posts/create">Create a new post</a></li>
         <li class="list">
             <a href="/register">Register</a>
 
@@ -29,8 +32,10 @@
 </div>
 <nav sec:authorize="isAnonymous()" id="my-nav" class="navbar navbar-default" th:fragment="mainNavbar">
     <div class="logo">
-    <ul class="navbar-links">
-
+        <img th:src="@{/img/peony.png}" alt="flower" height="40" width="40" class="peony"/>
+        <h3 class="peony blog-title">Blog</h3>
+        <ul class="navbar-links">
+            <li class="list"><a href="/">Index</a></li>
                     <li class="list" id="login"><a href="/login">Login</a></li>
                     <li  id="register-button" class="list"><a href="/register">Register</a></li>
                     <li>
