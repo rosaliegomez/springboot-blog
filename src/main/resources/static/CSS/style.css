@@ -45,6 +45,7 @@ li {
     color: white;
     text-align: center;
     font-family: 'Lato', sans-serif;
+    margin-bottom: -12px;
 }
 a{
     color: white !important;
