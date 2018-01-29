@@ -55,6 +55,18 @@ a{
     text-transform: uppercase;
     margin:11px;
 }
+.center-title{
+    /*display: inline-block;*/
+    text-align: center;
+
+}
+.blue{
+    color: #1E998D !important;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
 .logo {
     position: relative;
     left: 0;

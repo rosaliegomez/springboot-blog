@@ -3,6 +3,7 @@ package com.codeup.blog.controllers;
 import com.codeup.blog.models.Post;
 import com.codeup.blog.models.User;
 import com.codeup.blog.repositories.UsersRepository;
+import com.codeup.blog.repositories.PostsRepository;
 import com.codeup.blog.services.PostSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,35 +11,50 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class PostsController {
 
     private final PostSvc service;
     private final UsersRepository userDao;
+    private final PostsRepository postDao;
 
     @Autowired
-    public PostsController(PostSvc service, UsersRepository userDao) {
+    public PostsController(PostSvc service,  UsersRepository userDao, PostsRepository postDao) {
         this.service = service;
         this.userDao = userDao;
+        this.postDao =postDao;
     }
+
+    @Autowired
+    PostsRepository postsRepository;
 
 
 
     @GetMapping("/posts")
 
-    public String showPosts (Model viewModel){
+    public String showPosts (Model viewModel, @ModelAttribute Post post){
         String output = "";
-       List<Post> posts = (List<Post>) service.findAll();
-        viewModel.addAttribute("posts",service.findAll());
-//        postSvc.save(new Post("New title", "Newish description"));
 //
-//        for (Post post: posts){
-//            output += post.getTitle() + "<br/>" + post.getDescription()+"<br/>";
-//        }
+        List<Post> posts = (List<Post>) service.findAll();
+        viewModel.addAttribute("posts",service.findAll());
+
+//        viewModel.addAttribute("posts",postsRepository);
+
+
+
+//        Post postId = postDao.findById(post.getId());
+
+
+//        List<Post>postsIds = postsDao.findById(id);
+//        List <Long> postIds = (List<Long>) service.findById(post.getId());
+//        viewModel.addAttribute("postid", service.findById(post.getId()));
+
+//
         return "posts/index";
 
     }

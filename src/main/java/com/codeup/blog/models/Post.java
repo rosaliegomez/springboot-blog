@@ -39,6 +39,17 @@ public class Post {
         this.title = title;
         this.description = description;
     }
+    public Post(String title, String description, User user){
+        this.title= title;
+        this.description= description;
+        this.user= user;
+    }
+    public Post(Long id ,String title, String description, User user){
+        this.id=id;
+        this.title=title;
+        this.description = description;
+        this.user=user;
+    }
 //    public Post(Long id, String title, String description){
 //        this.id = id;
 //        this.title = title;

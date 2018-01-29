@@ -15,7 +15,8 @@
     <div class="logo">
         <img th:src="@{/img/peony.png}" alt="flower" height="40" width="40" class="peony"/>
         <h3 class="peony blog-title">Blog</h3>
-    <ul class="navbar-links" >
+        <a class="navbar-link">Welcome <span th:text="${#authentication.principal.username}"/>!</a>
+    <ul class="navbar-links">
 
         <li class="list"><a href="/posts/create">Create a new post</a></li>
         <li class="list">
