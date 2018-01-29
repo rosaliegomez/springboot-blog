@@ -4,14 +4,56 @@
     <head th:replace="fragments/head :: main-header('View Post')"></head>
 </head>
 <body>
-<nav th:replace="fragments/navbar :: mainNavbar"></nav>
-<div th:each="post :${post}">
-    <h1 th:text="${post.title}">
+<div sec:authorize="isAuthenticated()" id="logged-in-nav" class="navbar navbar-default" th:fragment="loggedinNav">
+    <div class="logo">
+        <img th:src="@{/img/peony.png}" alt="flower" height="40" width="40" class="peony"/>
+        <h3 class="peony blog-title">Blog</h3>
+        <ul class="navbar-links" >
 
-    </h1>
-    <p th:text="${post.description}"></p>
-    Created by: <a th:href="@{'mailto:' + ${post.user.email} }"><span th:text="${post.user.username}"></span></a>
+            <li class="list"><a href="/posts/create">Create a new post</a></li>
+            <li class="list">
+                <a href="">View Your Posts</a>
+
+            </li>
+            <li class="list">
+                <form th:action="@{/logout}" th:method="post">
+                    <button id="logout-button" class="btn-link btn">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
 </div>
+<nav sec:authorize="isAnonymous()" id="my-nav" class="navbar navbar-default" th:fragment="mainNavbar">
+    <div class="logo">
+        <img th:src="@{/img/peony.png}" alt="flower" height="40" width="40" class="peony"/>
+        <h3 class="peony blog-title">Blog</h3>
+        <ul class="navbar-links">
+            <li class="list"><a href="/posts">View All Posts</a></li>
+            <li class="list" id="login"><a href="/login">Login</a></li>
+            <li  id="register-button" class="list"><a href="/register">Register</a></li>
+            <li>
+                <!--<form th:action="@{/logout}" th:method="post">-->
+                <!--<button class="btn-link btn" style="margin-top: 8px">Logout</button>-->
+                <!--</form>-->
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="panel panel-default">
+<div class="panel-heading" th:each="post :${post}">
+    <h3 th:text="${post.title}">
 
+    </h3>
+</div>
+    <div class="panel-body">
+    <p th:text="${post.description}"></p>
+    Created by: <a class="blue"><span th:text="${post.user.username}"></span></a>
+    <br/>
+    Email <span class= "blue" th:text="${post.user.username}"><a class="blue" th:href="@{'mailto:' + ${post.user.email} }"> Here</a></span>
+    <a class="blue" th:href="@{'mailto:' + ${post.user.email} }"> Here</a>
+        <a th:href="@{/posts/{id}/delete(id=${post.id})}"><input type="submit" value="Delete Post" class="btn-primary"/></a>
+        <a th:href="@{/posts/{id}/edit(id=${post.id})}"><input type="submit" value="Edit Post" class="btn-primary"/></a>
+    </div>
+</div>
 </body>
-</html>FK5lidm6cqbc7u4xhqpxm898qme
+</html>
