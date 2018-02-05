@@ -113,7 +113,9 @@ public class PostsController {
     public String editPost(@ModelAttribute Post post, @PathVariable Long id){
         post.setId(id);
         service.save(post);
-        return "redirect:/posts" + post.getId();
+
+        return "redirect:/posts";
+//        return "redirect:/posts/" + post.getId();
     }
 
     @GetMapping("posts/{id}/delete")
