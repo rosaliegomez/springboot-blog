@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <head th:replace="fragments/head :: main-header('Home')"></head>
+</head>
+<body>
+<div sec:authorize="isAuthenticated()" id="logged-in-nav" class="navbar navbar-default" th:fragment="loggedinNav">
+    <div class="logo">
+        <img th:src="@{/img/peony.png}" alt="flower" height="40" width="40" class="peony"/>
+        <h3 class="peony blog-title">Blog</h3>
+        <ul class="navbar-links" >
+
+            <li class="list"><a href="/posts/create">Create a new post</a></li>
+            <li class="list">
+                <a href="">View Your Posts</a>
+
+            </li>
+            <li class="list">
+                <form th:action="@{/logout}" th:method="post">
+                    <button id="logout-button" class="btn-link btn">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
+<nav sec:authorize="isAnonymous()" id="my-nav" class="navbar navbar-default" th:fragment="mainNavbar">
+    <div class="logo">
+        <img th:src="@{/img/peony.png}" alt="flower" height="40" width="40" class="peony"/>
+        <h3 class="peony blog-title">Blog</h3>
+        <ul class="navbar-links">
+            <li class="list"><a href="/posts">View All Posts</a></li>
+            <li class="list" id="login"><a href="/login">Login</a></li>
+            <li  id="register-button" class="list"><a href="/register">Register</a></li>
+            <li>
+                <!--<form th:action="@{/logout}" th:method="post">-->
+                <!--<button class="btn-link btn" style="margin-top: 8px">Logout</button>-->
+                <!--</form>-->
+            </li>
+        </ul>
+    </div>
+</nav>
+<div>
+    <div>
+
+        <h1 class="center-title">Start your own blog! Create your own posts.</h1>
+        <img th:src="@{img/pic1.jpeg}" alt="blogpic" height="300" width="400" class="col-sm-6 col-sm-offset-3"/>
+        <br/>
+        <div class="col-sm-6 col-sm-offset-3 login-buttons">
+        <a href="/register"><input type="submit" value="Register" id="index-register"/></a>
+        <br/>
+        <a href="/login"><input type="submit" value="Login" id="index-login"/></a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
